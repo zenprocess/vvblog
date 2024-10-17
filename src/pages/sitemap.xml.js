@@ -2,7 +2,7 @@ import { getCollection } from 'astro:content';
 
 const website = "https://vals-thoughts.pages.dev";
 
-export async function GET() {
+export async function GET({ site }) {
   const blogEntries = await getCollection('blog');
   const pages = await Astro.glob('./*.astro');
 

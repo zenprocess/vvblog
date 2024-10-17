@@ -13,9 +13,10 @@ const posts = await getCollection('blog');
 		<ul>
 			{posts.map((post) => (
 				<li>
-					<a href={`/blog/${post.slug}`}>
+					<a href={`/blog/${post.slug}/`}>
 						<h3>{post.data.title}</h3>
 						<p>{post.data.description}</p>
+						<small>{new Date(post.data.pubDate).toLocaleDateString()}</small>
 					</a>
 				</li>
 			))}
