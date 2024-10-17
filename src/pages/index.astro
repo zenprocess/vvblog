@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TetrisHeader from '../components/TetrisHeader.astro';
+---
+
+<Layout title="Val's Thoughts - Home">
+	<TetrisHeader />
+	<main>
+		<h2>Welcome to Val's Thoughts</h2>
+		<p>Explore the musings of a seasoned technologist on various topics in the world of tech.</p>
+		<a href="/blog" class="cta-button">Read Latest Posts</a>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
+	p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		margin-bottom: 2rem;
+	}
+	.cta-button {
+		display: inline-block;
+		background-color: var(--accent-dark);
+		color: var(--text);
+		padding: 0.8rem 1.5rem;
+		border-radius: 5px;
+		text-decoration: none;
+		font-weight: bold;
+		transition: background-color 0.3s ease;
+	}
+	.cta-button:hover {
+		background-color: rgb(var(--accent));
+	}
+</style>

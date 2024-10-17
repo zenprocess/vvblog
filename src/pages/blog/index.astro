@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TetrisHeader from '../../components/TetrisHeader.astro';
+
+const posts = await getCollection('blog');
+---
+
+<Layout title="Val's Thoughts - Blog">
+	<TetrisHeader />
+	<main>
+		<h2>Latest Posts</h2>
+		<ul>
+			{posts.map((post) => (
+				<li>
+					<a href={`/blog/${post.slug}`}>
+						<h3>{post.data.title}</h3>
+						<p>{post.data.description}</p>
+					</a>
+				</li>
+			))}
+		</ul>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+	li {
+		margin-bottom: 2rem;
+	}
+	a {
+		color: var(--text);
+		text-decoration: none;
+	}
+	h3 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+	p {
+		font-size: 1rem;
+		color: #aaa;
+	}
+</style>

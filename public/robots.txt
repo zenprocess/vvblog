@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vals-thoughts.pages.dev/sitemap.xml

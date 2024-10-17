@@ -1,0 +1,161 @@
+---
+---
+
+<header>
+  <h1 id="tetris-header">
+    <div class="letter" data-letter="V">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="A">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="L">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="'">
+      <div class="block"></div>
+      <div class="block"></div>
+    </div>
+    <div class="letter" data-letter="S">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="letter" data-letter="T">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="H">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="O">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="U">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="G">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="H">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="T">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+    <div class="letter" data-letter="S">
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+      <div class="block"></div><div class="block"></div><div class="block"></div>
+    </div>
+  </h1>
+</header>
+
+<style>
+  header {
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+  #tetris-header {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .letter {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    width: 3rem;
+    height: 4rem;
+  }
+  .block {
+    background-color: #333;
+    border: 1px solid #555;
+    transition: background-color 0.3s ease;
+  }
+  .spacer {
+    width: 1rem;
+  }
+  .letter[data-letter="'"] {
+    grid-template-columns: 1fr;
+    width: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    #tetris-header {
+      font-size: 1.5rem;
+    }
+    .letter {
+      width: 2.25rem;
+      height: 3rem;
+    }
+    .spacer {
+      width: 0.75rem;
+    }
+    .letter[data-letter="'"] {
+      width: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  const isMobile = window.innerWidth <= 768;
+  const letters = document.querySelectorAll('.letter');
+  
+  function fillBlocks(letter, duration = 300) {
+    const blocks = letter.querySelectorAll('.block');
+    blocks.forEach((block, index) => {
+      setTimeout(() => {
+        block.style.backgroundColor = '#fff';
+      }, index * duration / blocks.length);
+    });
+  }
+
+  function clearBlocks(letter) {
+    const blocks = letter.querySelectorAll('.block');
+    blocks.forEach(block => {
+      block.style.backgroundColor = '#333';
+    });
+  }
+
+  if (isMobile) {
+    function animateLetters() {
+      letters.forEach((letter, index) => {
+        setTimeout(() => {
+          fillBlocks(letter, 1000);
+          setTimeout(() => clearBlocks(letter), 2000);
+        }, index * 750);
+      });
+    }
+
+    animateLetters();
+    setInterval(animateLetters, letters.length * 750 + 2000);
+  } else {
+    letters.forEach(letter => {
+      letter.addEventListener('mouseenter', () => fillBlocks(letter));
+      letter.addEventListener('mouseleave', () => clearBlocks(letter));
+    });
+  }
+</script>
